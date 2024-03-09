@@ -6,7 +6,6 @@ import {
     Card,
     Text,
     Divider,
-    Badge,
     Grid,
 } from "@shopify/polaris";
 import { Icon } from "@shopify/polaris";
@@ -21,7 +20,6 @@ const VolumnForm = ({
     removeOption,
     discountTypeOptions,
 }) => {
-
     // console.log('options====', options)
     // console.log('value====', value)
     return (
@@ -47,12 +45,16 @@ const VolumnForm = ({
                         }}
                     >
                         <Divider />
-                        <Badge
-                            tone="critical-strong"
-                            style={{ background: "red", borderRadíu: "unset" }}
+                        <div
+                            style={{
+                                background: "red",
+                                borderRadius: "0 0 5px 0",
+                                padding: "5px 10px",
+                                width: "fit-content",
+                            }}
                         >
                             Option {index + 1}
-                        </Badge>
+                        </div>
                     </div>
                     <div
                         style={{
@@ -135,7 +137,6 @@ const VolumnForm = ({
                                 )}
                             />
                         </Grid.Cell>
-                        {/* {option.discountType !== discountTypeOptions[0].value && ( */}
                         {value[index].discountType !== discountTypeOptions[0].value && (
                             <Grid.Cell columnSpan={{ xs: 4, sm: 3, md: 3, lg: 4, xl: 4 }}>
                                 <Controller
@@ -180,10 +181,8 @@ const VolumnForm = ({
                 variant="primary"
                 tone="critical"
                 icon={<Icon source={PlusCircleIcon} tone="base" />}
-                // onClick={handleAddOption}
                 onClick={() =>
                     appendOption({
-                        // id: 0,
                         quantity: 1,
                         amount: "",
                         title: "",

@@ -3,26 +3,18 @@ import "@shopify/polaris/build/esm/styles.css";
 import React, { useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import enTranslations from "@shopify/polaris/locales/en.json";
-import {
-    AppProvider,
-    Page,
-    Button,
-    Layout,
-    Text,
-} from "@shopify/polaris";
+import { AppProvider, Page, Button, Layout, Text } from "@shopify/polaris";
 import { Icon } from "@shopify/polaris";
-import {
-    ArrowLeftIcon,
-} from "@shopify/polaris-icons";
+import { ArrowLeftIcon } from "@shopify/polaris-icons";
 import PreviewTable from "./component/PreviewTable";
 import GeneralForm from "./component/GeneralForm";
 import VolumnForm from "./component/VolumnForm";
 
 const discountTypeOptions = [
-    { label: 'None', value: 'None' },
-    { label: '% discount', value: '% discount' },
-    { label: 'Discount / each', value: 'Discount / each' },
-]
+    { label: "None", value: "None" },
+    { label: "% discount", value: "% discount" },
+    { label: "Discount / each", value: "Discount / each" },
+];
 
 // let renderCount = 0
 
@@ -56,16 +48,20 @@ const DiscountForm = () => {
                     discountType: discountTypeOptions[0].value,
                     suffix: "",
                 },
-            ]
-        }
+            ],
+        },
     });
 
-    const { fields: options, append: appendOption, remove: removeOption } = useFieldArray({
+    const {
+        fields: options,
+        append: appendOption,
+        remove: removeOption,
+    } = useFieldArray({
         control,
-        name: 'options'
+        name: "options",
     });
 
-    const watchOptions = watch("options")
+    const watchOptions = watch("options");
 
     // useEffect(() => {
     //     const subscription = watch((value) =>
@@ -81,7 +77,7 @@ const DiscountForm = () => {
         option.quantity,
         `${option.amount} ${option.suffix}`,
         option.discountType,
-    ])
+    ]);
 
     const onSubmit = async (data) => {
         // console.log('data====', data);
@@ -112,20 +108,17 @@ const DiscountForm = () => {
                         <Button tone="critical" size="medium">
                             <Icon source={ArrowLeftIcon} tone="base" />
                         </Button>
-                        {"  "}Create volumn discount 
+                        {"  "}Create volumn discount
                         {/* ({renderCount / 2}) */}
                     </Text>
                     {/* <Text variant="headingLg" as="h1"> */}
-                        {/* {JSON.stringify(watchOptions)} */}
-                        {/* {JSON.stringify(watchForm)} */}
+                    {/* {JSON.stringify(watchOptions)} */}
+                    {/* {JSON.stringify(watchForm)} */}
                     {/* </Text> */}
 
                     <Layout>
                         <Layout.Section>
-                            <GeneralForm
-                                control={control}
-                                errors={errors}
-                            />
+                            <GeneralForm control={control} errors={errors} />
 
                             <VolumnForm
                                 control={control}
@@ -133,7 +126,6 @@ const DiscountForm = () => {
                                 options={options}
                                 value={getValues().options}
                                 watchOptions={watchOptions}
-
                                 appendOption={appendOption}
                                 removeOption={removeOption}
                                 discountTypeOptions={discountTypeOptions}
@@ -146,7 +138,12 @@ const DiscountForm = () => {
                             />
                         </Layout.Section>
                     </Layout>
-                    <Button submit>Save</Button>
+
+                    <div style={{ padding: '10px 0' }}>
+                        <Button submit variant="primary" tone="success">
+                            Save
+                        </Button>
+                    </div>
                 </form>
             </Page>
         </AppProvider>
